@@ -15,4 +15,8 @@
 
 4. Установить и удалить deb-пакет с помощью dpkg.
 #### Выполнение
-![Задание 4](https://github.com/ArtRadchenko/AnimalHub/blob/main/Screenshots/task04.jpg)
+![Задание 4](https://github.com/ArtRadchenko/AnimalHub/blob/main/Screenshots/task04.jpg)  
+
+5. Выложить историю команд в терминале ubuntu
+#### Выполнение
+[История команд](https://github.com/ArtRadchenko/AnimalHub/blob/main/bash.txt) в терменале Ubuntu.
