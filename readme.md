@@ -11,4 +11,8 @@
 
 3. Подключить дополнительный репозиторий MySQL. Установить любой пакет из этого репозитория.
 #### Выполнение
-![Задание 3](https://github.com/ArtRadchenko/AnimalHub/blob/main/Screenshots/task03.jpg)
+![Задание 3](https://github.com/ArtRadchenko/AnimalHub/blob/main/Screenshots/task03.jpg)  
+
+4. Установить и удалить deb-пакет с помощью dpkg.
+#### Выполнение
+![Задание 4](https://github.com/ArtRadchenko/AnimalHub/blob/main/Screenshots/task04.jpg)
