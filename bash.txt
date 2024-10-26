@@ -12,3 +12,6 @@ sudo dpkg -i mysql-apt-config_0.8.33-1_all.deb
 sudo apt update
 sudo apt install mysql-server
 
+wget http://archive.ubuntu.com/ubuntu/pool/universe/h/htop/htop_2.0.1-1ubuntu1_amd64.deb
+sudo dpkg -i htop_2.0.1-1ubuntu1_amd64.deb
+sudo dpkg -r htop
