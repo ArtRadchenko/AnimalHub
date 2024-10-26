@@ -1,0 +1,14 @@
+cat > domestic_animals
+cat > pack_animals
+cat domestic_animals pack_animals > animals
+cat animals
+mv animals mans_friends
+
+mkdir animalhub
+mv mans_friends ~/animalhub
+
+wget https://dev.mysql.com/get/mysql-apt-config_0.8.33-1_all.deb
+sudo dpkg -i mysql-apt-config_0.8.33-1_all.deb
+sudo apt update
+sudo apt install mysql-server
+

@@ -7,4 +7,7 @@
 
 2. Создать директорию, переместить файл туда.
 #### Выполнение
-![Задание 2](https://github.com/ArtRadchenko/AnimalHub/blob/main/Screenshots/task02.jpg)
+![Задание 2](https://github.com/ArtRadchenko/AnimalHub/blob/main/Screenshots/task02.jpg)  
+
+3. Подключить дополнительный репозиторий MySQL. Установить любой пакет из этого репозитория.
+![Задание 3](https://github.com/ArtRadchenko/AnimalHub/blob/main/Screenshots/task03.jpg)
