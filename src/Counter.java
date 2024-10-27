@@ -15,5 +15,6 @@ public class Counter implements AutoCloseable {
 
     @Override
     public void close() {
+        System.out.println("Counter closed");
     }
 }
