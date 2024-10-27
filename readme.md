@@ -128,6 +128,11 @@ CREATE TABLE donkeys (
 9. Заполнить низкоуровневые таблицы именами(животных), командами которые они выполняют и датами рождения.
 #### Выполнение
 ```sql
+-- Заполнение таблицы animals
+INSERT INTO animals (Id, AnimalType) VALUES 
+(1, 'Domestic'),  -- Домашние животные
+(2, 'Pack');      -- Вьючные животные
+
 -- Заполнение таблицы domesticanimals
 INSERT INTO domesticanimals (GenusName, TypeID) VALUES 
 ('Dog', 1),  -- Собаки
