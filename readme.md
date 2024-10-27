@@ -34,26 +34,31 @@ CREATE DATABASE mans_friends;
 8. Создать таблицы с иерархией из диаграммы в БД.  
 #### Выполнение
 ```sql
+-- Таблица для хранения общих данных о животных
 CREATE TABLE Animal (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
+    birth_date DATE NOT NULL,
     age INT NOT NULL
 );
 
+-- Таблица для домашних животных
 CREATE TABLE DomesticAnimal (
     id INT AUTO_INCREMENT PRIMARY KEY,
     animal_id INT,
-    FOREIGN KEY (animal_id) REFERENCES Animal(id),
-    play BOOLEAN DEFAULT FALSE
+    play BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (animal_id) REFERENCES Animal(id)
 );
 
+-- Таблица для вьючных животных
 CREATE TABLE PackAnimal (
     id INT AUTO_INCREMENT PRIMARY KEY,
     animal_id INT,
-    FOREIGN KEY (animal_id) REFERENCES Animal(id),
-    carry_load BOOLEAN DEFAULT FALSE
+    carry_load BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (animal_id) REFERENCES Animal(id)
 );
 
+-- Таблица для собак
 CREATE TABLE Dog (
     id INT AUTO_INCREMENT PRIMARY KEY,
     domestic_animal_id INT,
@@ -61,6 +66,7 @@ CREATE TABLE Dog (
     FOREIGN KEY (domestic_animal_id) REFERENCES DomesticAnimal(id)
 );
 
+-- Таблица для кошек
 CREATE TABLE Cat (
     id INT AUTO_INCREMENT PRIMARY KEY,
     domestic_animal_id INT,
@@ -68,6 +74,7 @@ CREATE TABLE Cat (
     FOREIGN KEY (domestic_animal_id) REFERENCES DomesticAnimal(id)
 );
 
+-- Таблица для хомяков
 CREATE TABLE Hamster (
     id INT AUTO_INCREMENT PRIMARY KEY,
     domestic_animal_id INT,
@@ -75,6 +82,7 @@ CREATE TABLE Hamster (
     FOREIGN KEY (domestic_animal_id) REFERENCES DomesticAnimal(id)
 );
 
+-- Таблица для лошадей
 CREATE TABLE Horse (
     id INT AUTO_INCREMENT PRIMARY KEY,
     pack_animal_id INT,
@@ -82,6 +90,7 @@ CREATE TABLE Horse (
     FOREIGN KEY (pack_animal_id) REFERENCES PackAnimal(id)
 );
 
+-- Таблица для верблюдов
 CREATE TABLE Camel (
     id INT AUTO_INCREMENT PRIMARY KEY,
     pack_animal_id INT,
@@ -89,10 +98,68 @@ CREATE TABLE Camel (
     FOREIGN KEY (pack_animal_id) REFERENCES PackAnimal(id)
 );
 
+-- Таблица для ослов
 CREATE TABLE Donkey (
     id INT AUTO_INCREMENT PRIMARY KEY,
     pack_animal_id INT,
     breed VARCHAR(50) NOT NULL,
     FOREIGN KEY (pack_animal_id) REFERENCES PackAnimal(id)
 );
-```
+
+-- Таблица для хранения команд, которые выполняют животные
+CREATE TABLE Commands (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    animal_id INT,
+    command VARCHAR(50) NOT NULL,
+    FOREIGN KEY (animal_id) REFERENCES Animal(id)
+);
+```  
+
+9. Заполнить низкоуровневые таблицы именами(животных), командами которые они выполняют и датами рождения.
+#### Выполнение
+```sql
+INSERT INTO Animal (name, birth_date, age) VALUES 
+('Buddy', '2020-05-01', 3),   -- Собака
+('Mittens', '2019-03-15', 4),  -- Кошка
+('Hammy', '2021-07-20', 2),    -- Хомяк
+('Spirit', '2018-10-10', 5),    -- Лошадь
+('Coco', '2020-12-05', 2),      -- Верблюд
+('Donny', '2019-08-22', 4);      -- Осел
+
+INSERT INTO DomesticAnimal (animal_id, play) VALUES 
+(1, TRUE),  -- Собака Buddy
+(2, TRUE),  -- Кошка Mittens
+(3, TRUE);  -- Хомяк Hammy
+
+INSERT INTO PackAnimal (animal_id, carry_load) VALUES 
+(4, TRUE),  -- Лошадь Spirit
+(5, TRUE),  -- Верблюд Coco
+(6, TRUE);  -- Осёл Donny
+
+INSERT INTO Dog (domestic_animal_id, breed) VALUES 
+(1, 'Labrador');  -- Собака Buddy
+
+INSERT INTO Cat (domestic_animal_id, color) VALUES 
+(2, 'Black');  -- Кошка Mittens
+
+INSERT INTO Hamster (domestic_animal_id, size) VALUES 
+(3, 'Small');  -- Хомячелло Hammy
+
+INSERT INTO Horse (pack_animal_id, breed) VALUES 
+(1, 'Arabian');  -- Лошадь Spirit
+
+INSERT INTO Camel (pack_animal_id, type) VALUES 
+(2, 'Dromedary');  -- Верблюд Coco
+
+INSERT INTO Donkey (pack_animal_id, breed) VALUES 
+(3, 'Standard');  -- Осёл Donny
+
+INSERT INTO Commands (animal_id, command) VALUES 
+(1, 'Sit'),       -- Собака Buddy
+(2, 'Jump'),      -- Кошка Mittens
+(3, 'Run'),       -- Хомяк Hammy
+(4, 'Gallop'),    -- Лошадь Spirit
+(5, 'Carry'),     -- Верблюд Coco
+(6, 'Bray');      -- Осёл Donny
+```  
+
