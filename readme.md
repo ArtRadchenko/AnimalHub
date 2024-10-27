@@ -45,7 +45,8 @@ CREATE TABLE packanimals (
     Id INT AUTO_INCREMENT PRIMARY KEY,
     GenusName VARCHAR(50),
     TypeID INT,
-    FOREIGN KEY (TypeID) REFERENCES animals(Id) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (TypeID)
+    REFERENCES animals(Id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- Создание таблицы для домашних животных
@@ -53,7 +54,8 @@ CREATE TABLE domesticanimals (
     Id INT AUTO_INCREMENT PRIMARY KEY,
     GenusName VARCHAR(50),
     TypeID INT,
-    FOREIGN KEY (TypeID) REFERENCES animals(Id) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (TypeID)
+    REFERENCES animals(Id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- Создание таблицы для собак
@@ -63,7 +65,8 @@ CREATE TABLE dogs (
     Name VARCHAR(50),
     Command VARCHAR(50),
     BirthDate DATE,
-    FOREIGN KEY (DomesticAnimalID) REFERENCES domesticanimals(Id) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (DomesticAnimalID)
+    REFERENCES domesticanimals(Id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- Создание таблицы для кошек
@@ -73,7 +76,8 @@ CREATE TABLE cats (
     Name VARCHAR(50),
     Command VARCHAR(50),
     BirthDate DATE,
-    FOREIGN KEY (DomesticAnimalID) REFERENCES domesticanimals(Id) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (DomesticAnimalID)
+    REFERENCES domesticanimals(Id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- Создание таблицы для хомяков
@@ -83,7 +87,8 @@ CREATE TABLE hamsters (
     Name VARCHAR(50),
     Command VARCHAR(50),
     BirthDate DATE,
-    FOREIGN KEY (DomesticAnimalID) REFERENCES domesticanimals(Id) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (DomesticAnimalID)
+    REFERENCES domesticanimals(Id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- Создание таблицы для лошадей
@@ -93,7 +98,8 @@ CREATE TABLE horses (
     Name VARCHAR(50),
     Command VARCHAR(50),
     BirthDate DATE,
-    FOREIGN KEY (PackAnimalID) REFERENCES packanimals(Id) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (PackAnimalID)
+    REFERENCES packanimals(Id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- Создание таблицы для верблюдов
@@ -103,7 +109,8 @@ CREATE TABLE camels (
     Name VARCHAR(50),
     Command VARCHAR(50),
     BirthDate DATE,
-    FOREIGN KEY (PackAnimalID) REFERENCES packanimals(Id) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (PackAnimalID)
+    REFERENCES packanimals(Id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- Создание таблицы для ослов
@@ -113,7 +120,8 @@ CREATE TABLE donkeys (
     Name VARCHAR(50),
     Command VARCHAR(50),
     BirthDate DATE,
-    FOREIGN KEY (PackAnimalID) REFERENCES packanimals(Id) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (PackAnimalID)
+    REFERENCES packanimals(Id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 ```  
 
