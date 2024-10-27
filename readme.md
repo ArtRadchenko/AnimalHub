@@ -27,6 +27,72 @@
 
 7. В подключенном MySQL репозитории создать базу данных “Друзья человека”.
 #### Выполнение
-```
+```sql
 CREATE DATABASE mans_friends;
+```  
+
+8. Создать таблицы с иерархией из диаграммы в БД.  
+#### Выполнение
+```sql
+CREATE TABLE Animal (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    age INT NOT NULL
+);
+
+CREATE TABLE DomesticAnimal (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    animal_id INT,
+    FOREIGN KEY (animal_id) REFERENCES Animal(id),
+    play BOOLEAN DEFAULT FALSE
+);
+
+CREATE TABLE PackAnimal (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    animal_id INT,
+    FOREIGN KEY (animal_id) REFERENCES Animal(id),
+    carry_load BOOLEAN DEFAULT FALSE
+);
+
+CREATE TABLE Dog (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    domestic_animal_id INT,
+    breed VARCHAR(50) NOT NULL,
+    FOREIGN KEY (domestic_animal_id) REFERENCES DomesticAnimal(id)
+);
+
+CREATE TABLE Cat (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    domestic_animal_id INT,
+    color VARCHAR(30) NOT NULL,
+    FOREIGN KEY (domestic_animal_id) REFERENCES DomesticAnimal(id)
+);
+
+CREATE TABLE Hamster (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    domestic_animal_id INT,
+    size VARCHAR(30) NOT NULL,
+    FOREIGN KEY (domestic_animal_id) REFERENCES DomesticAnimal(id)
+);
+
+CREATE TABLE Horse (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    pack_animal_id INT,
+    breed VARCHAR(50) NOT NULL,
+    FOREIGN KEY (pack_animal_id) REFERENCES PackAnimal(id)
+);
+
+CREATE TABLE Camel (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    pack_animal_id INT,
+    type VARCHAR(50) NOT NULL,
+    FOREIGN KEY (pack_animal_id) REFERENCES PackAnimal(id)
+);
+
+CREATE TABLE Donkey (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    pack_animal_id INT,
+    breed VARCHAR(50) NOT NULL,
+    FOREIGN KEY (pack_animal_id) REFERENCES PackAnimal(id)
+);
 ```
