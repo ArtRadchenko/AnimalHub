@@ -185,31 +185,55 @@ INSERT INTO donkeys (PackAnimalID, Name, Command, BirthDate) VALUES
 10. Удалив из таблицы верблюдов, т.к. верблюдов решили перевезти в другой питомник на зимовку. Объединить таблицы лошади, и ослы в одну таблицу.
 #### Выполнение
 ```sql
-
+-- Удаление верблюдов
+DELETE FROM camels;
 ```  
 
 ```sql
--- Создание новой таблицы Horsedonkey с объединенными данными
-CREATE TABLE Horsedonkey AS
-SELECT pack_animal_id, breed, 'Horse' AS type FROM Horse
-UNION
-SELECT pack_animal_id, breed, 'Donkey' AS type FROM Donkey;
+-- Создание новой таблицы Horsesdonkey с объединенными данными
+CREATE TABLE horsesdonkeys (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(255),
+    Command VARCHAR(255),
+    BirthDate DATE,
+    AnimalType VARCHAR(50)
+);
 
--- Удаление старых таблиц
-DROP TABLE Horse;
-DROP TABLE Donkey;
+INSERT INTO horsesdonkeys (Name, Command, BirthDate, AnimalType)
+SELECT Name, Command, BirthDate, 'Horse' AS AnimalType FROM horses
+UNION ALL
+SELECT Name, Command, BirthDate, 'Donkey' AS AnimalType FROM donkeys;
 ```  
+
 11. Создать новую таблицу “молодые животные” в которую попадут все животные старше 1 года, но младше 3 лет и в отдельном столбце с точностью до месяца подсчитать возраст животных в новой таблице.
 #### Выполнение
 ```sql
--- Создание новой таблицы young_animals
-CREATE TABLE young_animals AS
-SELECT 
-    *,
-    TIMESTAMPDIFF(MONTH, birth_date, CURDATE()) AS age_in_months
-FROM 
-    Animals
-WHERE 
-    TIMESTAMPDIFF(YEAR, birth_date, CURDATE()) > 1 AND 
-    TIMESTAMPDIFF(YEAR, birth_date, CURDATE()) < 3;
+-- Создание новой таблицы younganimals
+CREATE TABLE younganimals (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(255),
+    Command VARCHAR(255),
+    BirthDate DATE,
+    AgeInMonths INT  -- Поле для хранения возраста в месяцах
+);
+```  
+
+```sql
+-- Вставка данных о молодых животных
+INSERT INTO younganimals (Name, Command, BirthDate, AgeInMonths)
+SELECT Name, Command, BirthDate, 
+       TIMESTAMPDIFF(MONTH, BirthDate, CURDATE()) AS AgeInMonths
+FROM (
+    SELECT Name, Command, BirthDate FROM dogs
+    UNION ALL
+    SELECT Name, Command, BirthDate FROM cats
+    UNION ALL
+    SELECT Name, Command, BirthDate FROM hamsters
+    UNION ALL
+    SELECT Name, Command, BirthDate FROM horses
+    UNION ALL
+    SELECT Name, Command, BirthDate FROM donkeys
+) AS all_animals
+WHERE TIMESTAMPDIFF(YEAR, BirthDate, CURDATE()) >= 1 
+      AND TIMESTAMPDIFF(YEAR, BirthDate, CURDATE()) < 3;
 ```
