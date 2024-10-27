@@ -190,7 +190,7 @@ DELETE FROM camels;
 ```  
 
 ```sql
--- Создание новой таблицы Horsesdonkey с объединенными данными
+-- Создание новой таблицы horsesdonkeys с объединенными данными
 CREATE TABLE horsesdonkeys (
     ID INT AUTO_INCREMENT PRIMARY KEY,
     Name VARCHAR(255),
@@ -236,4 +236,4 @@ FROM (
 ) AS all_animals
 WHERE TIMESTAMPDIFF(YEAR, BirthDate, CURDATE()) >= 1 
       AND TIMESTAMPDIFF(YEAR, BirthDate, CURDATE()) < 3;
-```
+```  
