@@ -19,4 +19,8 @@
 
 5. Выложить историю команд в терминале ubuntu
 #### Выполнение
-[История команд](https://github.com/ArtRadchenko/AnimalHub/blob/main/bash.txt) в терменале Ubuntu.
+[История команд](https://github.com/ArtRadchenko/AnimalHub/blob/main/bash.txt) в терменале Ubuntu.  
+
+6. Нарисовать диаграмму, в которой есть класс родительский класс, домашние животные и вьючные животные,в составы которых в случае домашних животных войдут классы: собаки, кошки, хомяки, а в класс вьючные животные войдут: Лошади, верблюдыиослы.
+#### Выполнение
+![Задание 6](https://github.com/ArtRadchenko/AnimalHub/blob/main/Screenshots/uml.jpg)  
