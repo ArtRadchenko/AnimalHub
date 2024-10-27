@@ -15,6 +15,5 @@ public class Counter implements AutoCloseable {
 
     @Override
     public void close() {
-        throw new IllegalStateException("Counter was not closed properly!");
     }
 }
