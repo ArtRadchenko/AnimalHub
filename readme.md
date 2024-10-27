@@ -237,3 +237,52 @@ FROM (
 WHERE TIMESTAMPDIFF(YEAR, BirthDate, CURDATE()) >= 1 
       AND TIMESTAMPDIFF(YEAR, BirthDate, CURDATE()) < 3;
 ```  
+12. Объединить все таблицы в одну, при этом сохраняя поля, указывающие на прошлую принадлежность к старым таблицам.
+#### Выполнение
+```sql
+-- Создание результирующей таблицы allanimals
+CREATE TABLE allanimals (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(100),
+    Command VARCHAR(100),
+    BirthDate DATE,
+    AgeInMonths INT,
+    SourceTable VARCHAR(20)
+);
+```  
+```sql
+-- Вставка данных из таблицы dogs
+INSERT INTO allanimals (Name, Command, BirthDate, AgeInMonths, SourceTable)
+SELECT Name, Command, BirthDate, 
+       TIMESTAMPDIFF(MONTH, BirthDate, CURDATE()) AS AgeInMonths, 
+       'dogs' AS SourceTable
+FROM dogs;
+
+-- Вставка данных из таблицы cats
+INSERT INTO allanimals (Name, Command, BirthDate, AgeInMonths, SourceTable)
+SELECT Name, Command, BirthDate, 
+       TIMESTAMPDIFF(MONTH, BirthDate, CURDATE()) AS AgeInMonths, 
+       'cats' AS SourceTable
+FROM cats;
+
+-- Вставка данных из таблицы hamsters
+INSERT INTO allanimals (Name, Command, BirthDate, AgeInMonths, SourceTable)
+SELECT Name, Command, BirthDate, 
+       TIMESTAMPDIFF(MONTH, BirthDate, CURDATE()) AS AgeInMonths, 
+       'hamsters' AS SourceTable
+FROM hamsters;
+
+-- Вставка данных из таблицы horses
+INSERT INTO allanimals (Name, Command, BirthDate, AgeInMonths, SourceTable)
+SELECT Name, Command, BirthDate, 
+       TIMESTAMPDIFF(MONTH, BirthDate, CURDATE()) AS AgeInMonths, 
+       'horses' AS SourceTable
+FROM horses;
+
+-- Вставка данных из таблицы donkeys
+INSERT INTO allanimals (Name, Command, BirthDate, AgeInMonths, SourceTable)
+SELECT Name, Command, BirthDate, 
+       TIMESTAMPDIFF(MONTH, BirthDate, CURDATE()) AS AgeInMonths, 
+       'donkeys' AS SourceTable
+FROM donkeys;
+```  
