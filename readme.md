@@ -163,3 +163,20 @@ INSERT INTO Commands (animal_id, command) VALUES
 (6, 'Bray');      -- Осёл Donny
 ```  
 
+10. Удалив из таблицы верблюдов, т.к. верблюдов решили перевезти в другой питомник на зимовку. Объединить таблицы лошади, и ослы в одну таблицу.
+#### Выполнение
+```sql
+DELETE FROM Camel WHERE pack_animal_id = 2;  -- Минус Верблюд Coco
+```  
+
+```sql
+-- Создание новой таблицы Horsedonkey с объединенными данными
+CREATE TABLE Horsedonkey AS
+SELECT pack_animal_id, breed, 'Horse' AS type FROM Horse
+UNION
+SELECT pack_animal_id, breed, 'Donkey' AS type FROM Donkey;
+
+-- Удаление старых таблиц
+DROP TABLE Horse;
+DROP TABLE Donkey;
+```  
